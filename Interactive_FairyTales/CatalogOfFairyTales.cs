@@ -36,9 +36,13 @@ namespace Interactive_FairyTales
             {
                 Panel Main = new Panel { Size = new Size(200, 300), BackgroundImageLayout = ImageLayout.Stretch, BorderStyle = BorderStyle.FixedSingle, Name = (string)DATA.Rows[I1][0] };
                 {
-                    byte[] Imaged = (byte[])DATA.Rows[I1][2];
                     PictureBox PictureFairyTales = new PictureBox { Size = new Size(Main.Width - 20, Main.Height - 70), BorderStyle = BorderStyle.Fixed3D, BackgroundImageLayout = ImageLayout.Stretch, Left = 10, Top = 10, Name = (string)DATA.Rows[I1][0] };
-                    if (Imaged == null) PictureFairyTales.BackgroundImage = Properties.Resources.MissingPhoto; else using (MemoryStream MS = new MemoryStream(Imaged, 0, Imaged.Length)) { MS.Write(Imaged, 0, Imaged.Length); PictureFairyTales.BackgroundImage = Image.FromStream(MS, true, true); }
+                    if (DATA.Rows[I1][2] == DBNull.Value) PictureFairyTales.BackgroundImage = Properties.Resources.MissingPhoto;
+                    else
+                    {
+                        byte[] Imaged = (byte[])DATA.Rows[I1][2];
+                        using (MemoryStream MS = new MemoryStream(Imaged, 0, Imaged.Length)) { MS.Write(Imaged, 0, Imaged.Length); PictureFairyTales.BackgroundImage = Image.FromStream(MS, true, true); }
+                    }
 
                     Label NameFairyTales = new Label { Size = new Size(Main.Width - 20, 35), BorderStyle = BorderStyle.Fixed3D, Left = 10, Top = Main.Height - 50, Font = new Font("Times New Roman", 12), TextAlign = ContentAlignment.MiddleCenter, Text = (string)DATA.Rows[I1][1], Name = (string)DATA.Rows[I1][0] };
 

@@ -64,6 +64,9 @@
     <EmbeddedResource Include="CatalogOfFairyTales.resx">
       <DependentUpon>CatalogOfFairyTales.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FairyTale.resx">
+      <DependentUpon>FairyTale.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
