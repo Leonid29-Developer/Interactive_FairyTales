@@ -45,17 +45,25 @@ namespace Interactive_FairyTales
         {
             PagesNumbers.Text = $"{Page+1} / {DATA.Rows.Count}";
 
-            FairyTale_Text.Text = (string)DATA.Rows[Page][1];
+            FairyTale_Text.Text = (string)DATA.Rows[Page][1]; PanelForText.AutoScroll = false; PanelForText.AutoScroll = true;
             if (DATA.Rows[Page][2] == DBNull.Value) FairyTale_Picture.BackgroundImage = null;
             else
             {
                 byte[] Imaged = (byte[])DATA.Rows[Page][2];
                 using (MemoryStream MS = new MemoryStream(Imaged, 0, Imaged.Length)) { MS.Write(Imaged, 0, Imaged.Length); FairyTale_Picture.BackgroundImage = Image.FromStream(MS, true, true); }
             }
+            MessageBox.Show(PanelForText.Width.ToString());
         }
 
         private void PagePrev_Click(object sender, EventArgs e) { if (Page > 0) Page--; PageOutput(); }
 
         private void PageNext_Click(object sender, EventArgs e) { if (Page < DATA.Rows.Count-1) Page++; PageOutput(); }
+
+        private void FairyTale_SizeChanged(object sender, EventArgs e)
+        {
+            if ((int)((double)PanelForText.Width / 32.0) >0)FairyTale_Text.Font = new Font("Times New Roman", (int)((double)PanelForText.Width / 32.0));
+                FairyTale_Picture.Size = new Size(FairyTale_Picture.Height, FairyTale_Picture.Height); 
+                PanelForText.Size = new Size(Width - FairyTale_Picture.Height - 110, PanelForText.Height); PanelForText.Location = new Point(FairyTale_Picture.Height + 60, PanelForText.Location.Y);
+            }
     }
 }
