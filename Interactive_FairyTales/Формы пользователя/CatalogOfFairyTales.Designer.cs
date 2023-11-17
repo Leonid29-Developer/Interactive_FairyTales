@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.Table = new System.Windows.Forms.TableLayoutPanel();
+            this.ManagementForm_Button = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // Table
@@ -49,11 +50,24 @@
             this.Table.Size = new System.Drawing.Size(636, 323);
             this.Table.TabIndex = 0;
             // 
+            // ManagementForm_Button
+            // 
+            this.ManagementForm_Button.Font = new System.Drawing.Font("Times New Roman", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ManagementForm_Button.Location = new System.Drawing.Point(209, 414);
+            this.ManagementForm_Button.Margin = new System.Windows.Forms.Padding(200, 20, 180, 20);
+            this.ManagementForm_Button.Name = "ManagementForm_Button";
+            this.ManagementForm_Button.Size = new System.Drawing.Size(356, 48);
+            this.ManagementForm_Button.TabIndex = 1;
+            this.ManagementForm_Button.Text = "Форма управления";
+            this.ManagementForm_Button.UseVisualStyleBackColor = true;
+            this.ManagementForm_Button.Click += new System.EventHandler(this.ManagementForm_Button_Click);
+            // 
             // CatalogOfFairyTales
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(754, 491);
+            this.Controls.Add(this.ManagementForm_Button);
             this.Controls.Add(this.Table);
             this.Name = "CatalogOfFairyTales";
             this.Text = "Каталог сказок";
@@ -65,6 +79,7 @@
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel Table;
+        private System.Windows.Forms.Button ManagementForm_Button;
     }
 }
 

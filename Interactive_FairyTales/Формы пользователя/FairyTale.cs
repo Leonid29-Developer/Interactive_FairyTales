@@ -52,7 +52,6 @@ namespace Interactive_FairyTales
                 byte[] Imaged = (byte[])DATA.Rows[Page][2];
                 using (MemoryStream MS = new MemoryStream(Imaged, 0, Imaged.Length)) { MS.Write(Imaged, 0, Imaged.Length); FairyTale_Picture.BackgroundImage = Image.FromStream(MS, true, true); }
             }
-            MessageBox.Show(PanelForText.Width.ToString());
         }
 
         private void PagePrev_Click(object sender, EventArgs e) { if (Page > 0) Page--; PageOutput(); }

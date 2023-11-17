@@ -67,5 +67,7 @@ namespace Interactive_FairyTales
 
             FairyTale.ID = Named; new FairyTale().ShowDialog();
         }
+
+        private void ManagementForm_Button_Click(object sender, EventArgs e) { Hide(); new Authorization().ShowDialog(); }
     }
 }

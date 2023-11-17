@@ -33,6 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -46,25 +47,42 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddImage.cs" />
-    <Compile Include="CatalogOfFairyTales.cs">
+    <Compile Include="Формы администратора\Authorization.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CatalogOfFairyTales.Designer.cs">
+    <Compile Include="Формы администратора\Authorization.Designer.cs">
+      <DependentUpon>Authorization.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Формы администратора\FairyTale_Editor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Формы администратора\FairyTale_Editor.Designer.cs">
+      <DependentUpon>FairyTale_Editor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Формы пользователя\CatalogOfFairyTales.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Формы пользователя\CatalogOfFairyTales.Designer.cs">
       <DependentUpon>CatalogOfFairyTales.cs</DependentUpon>
     </Compile>
-    <Compile Include="FairyTale.cs">
+    <Compile Include="Формы пользователя\FairyTale.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FairyTale.Designer.cs">
+    <Compile Include="Формы пользователя\FairyTale.Designer.cs">
       <DependentUpon>FairyTale.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="CatalogOfFairyTales.resx">
+    <EmbeddedResource Include="Формы администратора\Authorization.resx">
+      <DependentUpon>Authorization.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Формы администратора\FairyTale_Editor.resx">
+      <DependentUpon>FairyTale_Editor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Формы пользователя\CatalogOfFairyTales.resx">
       <DependentUpon>CatalogOfFairyTales.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FairyTale.resx">
+    <EmbeddedResource Include="Формы пользователя\FairyTale.resx">
       <DependentUpon>FairyTale.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -93,5 +111,6 @@
   <ItemGroup>
     <None Include="Resources\MissingPhoto.jpg" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
