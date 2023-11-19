@@ -47,6 +47,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Формы администратора\PagesOfFairyTales_Editor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Формы администратора\PagesOfFairyTales_Editor.Designer.cs">
+      <DependentUpon>PagesOfFairyTales_Editor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Формы администратора\Authorization.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -78,6 +84,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Формы администратора\FairyTale_Editor.resx">
       <DependentUpon>FairyTale_Editor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Формы администратора\PagesOfFairyTales_Editor.resx">
+      <DependentUpon>PagesOfFairyTales_Editor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Формы пользователя\CatalogOfFairyTales.resx">
       <DependentUpon>CatalogOfFairyTales.cs</DependentUpon>

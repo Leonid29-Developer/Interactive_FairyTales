@@ -1,16 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Drawing.Imaging;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Interactive_FairyTales
 {
@@ -53,9 +46,7 @@ namespace Interactive_FairyTales
         }
 
         private void Edit_Button_Click(object sender, EventArgs e)
-        {
-
-        }
+        { PagesOfFairyTales_Editor.ID = DATA.Rows[List_FairyTales.SelectedIndex][0].ToString(); new PagesOfFairyTales_Editor().ShowDialog(); }
         
         private bool ImageUpdate = false;
 
@@ -67,7 +58,7 @@ namespace Interactive_FairyTales
                 using (SqlConnection SQL_Connection = new SqlConnection(CatalogOfFairyTales.ConnectString))
                 {
                     SQL_Connection.Open(); SqlCommand SQL_Command = SQL_Connection.CreateCommand();
-                    string Request = $"EXEC [Interactive_FairyTales].[dbo].[FairyTale_AddNew] @Name, @ImageData"; // SQL-запрос
+                    string Request = $"EXEC [Interactive_FairyTales].[dbo].[FairyTale_Add] @Name, @ImageData"; // SQL-запрос
                     SQL_Command.Parameters.Add("@Name", SqlDbType.NVarChar, 50); SQL_Command.Parameters["@Name"].Value = FairyTale_Name.Text;
                     SQL_Command.Parameters.Add("@ImageData", SqlDbType.Image, 1000000); SQL_Command.Parameters["@ImageData"].Value = Imaged;
                     SQL_Command.CommandText = Request; SQL_Command.ExecuteNonQuery(); SQL_Connection.Close();
@@ -75,7 +66,7 @@ namespace Interactive_FairyTales
             else using (SqlConnection SQL_Connection = new SqlConnection(CatalogOfFairyTales.ConnectString))
                 {
                     SQL_Connection.Open(); SqlCommand SQL_Command = SQL_Connection.CreateCommand();
-                    string Request = $"EXEC [Interactive_FairyTales].[dbo].[FairyTale_AddOld] @ID, @Name, @ImageData"; // SQL-запрос
+                    string Request = $"EXEC [Interactive_FairyTales].[dbo].[FairyTale_Update] @ID, @Name, @ImageData"; // SQL-запрос
                     SQL_Command.Parameters.Add("@ID", SqlDbType.VarChar, 6); SQL_Command.Parameters["@ID"].Value = DATA.Rows[List_FairyTales.SelectedIndex][0];
                     SQL_Command.Parameters.Add("@Name", SqlDbType.NVarChar, 50); SQL_Command.Parameters["@Name"].Value = FairyTale_Name.Text;
                     SQL_Command.Parameters.Add("@ImageData", SqlDbType.Image, 1000000); if (ImageUpdate) SQL_Command.Parameters["@ImageData"].Value = Imaged; else SQL_Command.Parameters["@ImageData"].Value = DATA.Rows[List_FairyTales.SelectedIndex][2];
