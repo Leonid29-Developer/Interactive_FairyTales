@@ -107,8 +107,8 @@ namespace Interactive_FairyTales
         {
             byte[] Imaged = null; if (ImageUpdate) { ImageConverter converter = new ImageConverter(); Imaged = (byte[])converter.ConvertTo(PageFairyTale_Picture.BackgroundImage, typeof(byte[])); }
 
-            try
-            {
+            //try
+            //{
                 if (Convert.ToInt32(PageNumber.Text) > 0)
                 {
                     bool ADD = true; using (SqlConnection SQL_Connection = new SqlConnection(CatalogOfFairyTales.ConnectString))
@@ -128,7 +128,7 @@ namespace Interactive_FairyTales
                                 string Request = $"EXEC [Interactive_FairyTales].[dbo].[Page_Add] @FairyTale, @Page_Number, @Image, @Text"; // SQL-запрос
                                 SQL_Command.Parameters.Add("@FairyTale", SqlDbType.VarChar, 6); SQL_Command.Parameters["@FairyTale"].Value = ID;
                                 SQL_Command.Parameters.Add("@Page_Number", SqlDbType.Int); SQL_Command.Parameters["@Page_Number"].Value = Convert.ToInt32(PageNumber.Text);
-                                SQL_Command.Parameters.Add("@Image", SqlDbType.Image, 1000000); SQL_Command.Parameters["@Image"].Value = Imaged;
+                                SQL_Command.Parameters.Add("@Image", SqlDbType.Image, 1000000); if (ImageUpdate) SQL_Command.Parameters["@Image"].Value = Imaged; else SQL_Command.Parameters["@Image"].Value = DBNull.Value;
                                 SQL_Command.Parameters.Add("@Text", SqlDbType.NVarChar, 1000000); SQL_Command.Parameters["@Text"].Value = PageFairyTale_Text.Text;
                                 SQL_Command.CommandText = Request; SQL_Command.ExecuteNonQuery(); SQL_Connection.Close();
                             }
@@ -149,8 +149,8 @@ namespace Interactive_FairyTales
                     else MessageBox.Show("Данный номер страницы занят иной страницей", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else MessageBox.Show("Некорректный номер страницы", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            catch { MessageBox.Show("Данные введены некорректно", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+            //}
+            //catch { MessageBox.Show("Данные введены некорректно", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error); }
         }
 
         private void FairyTale_Picture_Click(object sender, EventArgs e)

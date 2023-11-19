@@ -15,9 +15,11 @@ namespace Interactive_FairyTales
         // Строка подключения
         public static string ConnectString = "Data Source=PC-LEONID29\\SQLEXPRESS;Integrated Security=True";
 
-        private void CatalogOfFairyTales_Load(object sender, EventArgs e)
+        private void CatalogOfFairyTales_Load(object sender, EventArgs e) => UpdateOutput();
+
+        private void UpdateOutput()
         {
-            Table.Controls.Clear(); Table.AutoScroll = true; Table.HorizontalScroll.Visible = false; Table.SuspendLayout(); DataTable DATA = new DataTable();
+            Table.AutoScroll = false; Table.Controls.Clear(); Table.AutoScroll = true; Table.HorizontalScroll.Visible = false; Table.SuspendLayout(); DataTable DATA = new DataTable();
 
             using (SqlConnection Connection = new SqlConnection(ConnectString))
             { Connection.Open(); using (SqlCommand CMD = new SqlCommand($"EXEC [Interactive_FairyTales].[dbo].[FairyTales_ALL]", Connection)) using (SqlDataReader Reader = CMD.ExecuteReader()) DATA.Load(Reader); Connection.Close(); }
@@ -44,7 +46,7 @@ namespace Interactive_FairyTales
             Table.ResumeLayout(true);
         }
 
-        private static void FairyTales_Click(object sender, EventArgs e)
+        private void FairyTales_Click(object sender, EventArgs e)
         {
             var Element_Panel = new Panel(); var Element_PictureBox = new PictureBox(); var Element_Label = new Label(); string Named = "";
 
@@ -55,9 +57,9 @@ namespace Interactive_FairyTales
                 case "System.Windows.Forms.Label": Element_Label = (Label)sender; Named = Element_Label.Name; break;
             }
 
-            FairyTale.ID = Named; new FairyTale().ShowDialog();
+            FairyTale.ID = Named; new FairyTale().ShowDialog(); UpdateOutput();
         }
 
-        private void ManagementForm_Button_Click(object sender, EventArgs e) { Hide(); new Authorization().ShowDialog(); }
+        private void ManagementForm_Button_Click(object sender, EventArgs e) { Hide(); new Authorization().ShowDialog(); UpdateOutput(); }
     }
 }

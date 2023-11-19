@@ -60,7 +60,7 @@ namespace Interactive_FairyTales
                     SQL_Connection.Open(); SqlCommand SQL_Command = SQL_Connection.CreateCommand();
                     string Request = $"EXEC [Interactive_FairyTales].[dbo].[FairyTale_Add] @Name, @ImageData"; // SQL-запрос
                     SQL_Command.Parameters.Add("@Name", SqlDbType.NVarChar, 50); SQL_Command.Parameters["@Name"].Value = FairyTale_Name.Text;
-                    SQL_Command.Parameters.Add("@ImageData", SqlDbType.Image, 1000000); SQL_Command.Parameters["@ImageData"].Value = Imaged;
+                    SQL_Command.Parameters.Add("@ImageData", SqlDbType.Image, 1000000); if (ImageUpdate) SQL_Command.Parameters["@ImageData"].Value = Imaged; else SQL_Command.Parameters["@ImageData"].Value = DBNull.Value;
                     SQL_Command.CommandText = Request; SQL_Command.ExecuteNonQuery(); SQL_Connection.Close();
                 }
             else using (SqlConnection SQL_Connection = new SqlConnection(CatalogOfFairyTales.ConnectString))
